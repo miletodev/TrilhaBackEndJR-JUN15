@@ -4,21 +4,28 @@
     "description": "API RESTful para gerenciamento de tarefas com autenticação de usuários",
     "main": "src/app.js",
     "scripts": {
-      "start": "node src/app.js",
-      "dev": "nodemon src/app.js"
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js"
     },
     "dependencies": {
-      "express": "^4.18.2",
-      "sqlite3": "^5.1.6",
-      "jsonwebtoken": "^9.0.0",
-      "bcryptjs": "^2.4.3",
-      "dotenv": "^16.0.3"
+        "bcrypt": "^5.1.1",
+        "bcryptjs": "^2.4.3",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.2",
+        "sqlite3": "^5.1.6"
     },
     "devDependencies": {
-      "nodemon": "^3.0.1"
+        "nodemon": "^3.0.1"
     },
-    "keywords": ["task-manager", "API", "RESTful", "SQLite", "JWT", "Node.js"],
+    "keywords": [
+        "task-manager",
+        "API",
+        "RESTful",
+        "SQLite",
+        "JWT",
+        "Node.js"
+    ],
     "author": "Mileto Almeida",
     "license": "MIT"
-  }
-  
+}
