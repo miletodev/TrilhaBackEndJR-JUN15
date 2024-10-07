@@ -1,5 +1,5 @@
 const userModel = require('../models/userModel');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userController = {
@@ -12,7 +12,7 @@ const userController = {
         return res.status(409).send('Usuário já existe');
       }
       // Se o usuário não existir, criptografa a senha e cria um novo usuário
-      const saltRounds = 10;
+      const saltRounds = 8;
       bcrypt.hash(password, saltRounds, (err, hash) => {
         if (err) {
           return res.status(500).json({ error: 'Erro ao criptografar a senha' });
