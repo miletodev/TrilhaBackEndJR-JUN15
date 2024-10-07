@@ -5,7 +5,7 @@ db.run(`CREATE TABLE IF NOT EXISTS tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT,
-    status TEXT NOT NULL
+    status TEXT NOT NULL,
     userId INTEGER,
     FOREIGN KEY(userId) REFERENCES users(id))`);
 
@@ -16,14 +16,14 @@ db.run(`CREATE TABLE IF NOT EXISTS tasks (
                 `INSERT INTO tasks (title, description, status, userId)
                 VALUES (?, ?, ?, ?)`,
                 [task.title, task.description, task.status, task.userId],
-                (err) => {
+                function (err) {
                     if (err) {
                         return callback(err);
                     }
-                    return callback(null);
+                    return callback(null, { id: this.lastID }); // Retorna o ID da tarefa criada
                 }
             );
-        },
+        }        
 
         // Função para listar todas as tarefas
         list: (callback) => {
@@ -39,14 +39,15 @@ db.run(`CREATE TABLE IF NOT EXISTS tasks (
         update: (id, updatedTask, callback) => {
             const { title, description, status } = updatedTask;
             const query = `UPDATE tasks SET title = ?, description = ?, status = ? WHERE id = ?`;
-            db.run(query, [title, description, status, id], (err) => {
+            db.run(query, [title, description, status, id], function (err) { 
                 if (err) {
                     return callback(err);
                 } else {
                     callback(null, { changes: this.changes });
                 }
             });
-        },
+        }
+        
 
         // Função para deletar tarefa
         delete: (id, callback) => {
